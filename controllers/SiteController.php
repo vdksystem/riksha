@@ -49,6 +49,9 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        if (\Yii::$app->user->isGuest) {
+            return $this->actionLogin();
+        }
         return $this->render('index');
     }
 
@@ -75,22 +78,19 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    public function actionContact()
+    public function actionBlacklist()
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
+        if (\Yii::$app->user->isGuest) {
+            return $this->actionLogin();
         }
+        return $this->render('blacklist');
     }
 
-    public function actionAbout()
+    public function actionRecords()
     {
-        return $this->render('about');
+        if (\Yii::$app->user->isGuest) {
+            return $this->actionLogin();
+        }
+        return $this->render('records');
     }
 }
