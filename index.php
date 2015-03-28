@@ -71,7 +71,7 @@
             width: 40%;
             border-radius: 7px;
             border: solid 1px orange;
-            height: 200px;
+
             float: left;
 
         }
@@ -79,7 +79,7 @@
             width: 40%;
             border-radius: 7px;
             border: solid 1px orange;
-            height: 200px;
+
             float: left;
             margin-top: 10px;
 
@@ -141,20 +141,24 @@
     </form></div>
 
     <?php
-    $doc = new DOMDocument('1.0');
-    // we want a nice output
-    $doc->formatOutput = true;
+    require_once("Main.php");
 
-    $root = $doc->createElement('book');
-    $root = $doc->appendChild($root);
+    $conf = Main::getConf();
 
-    $title = $doc->createElement('title');
-    $title = $root->appendChild($title);
+    $post = $_POST;
+    if ($post) {
+        switch ($post["action"]) {
+            case "settime" :
+                Main::setTime($post);
+                break;
+            case "music" :
+                Main::setMusic($post);
+                break;
+        }
+        sleep(2);
+        header('Location: index.php');
+    }
 
-    $text = $doc->createTextNode('This is the title');
-    $text = $title->appendChild($text);
-
-    echo 'Wrote: ' . $doc->save("data/test.xml") . ' bytes'; // Wrote: 72 bytes
     $path = "files";
     $list = scandir($path);
     $fileList = [];
@@ -182,11 +186,11 @@
         <input type="hidden" name="action" value="settime">
         <div class="timeform">
             <div><label>Начало работы</label>
-            <input type="text" name="hFrom" value="10">:<input type="text" name="mFrom" value="00">
+            <input type="text" name="hFrom" value="<?php echo $conf['hfrom']?>">:<input type="text" name="mFrom" value="<?php echo $conf['mfrom']?>">
             </div>
 
             <div><label>Окончание работы</label>
-                <input type="text" name="hTo" value="22">:<input type="text" name="mTo"  value="00">
+                <input type="text" name="hTo" value="<?php echo $conf['hto']?>">:<input type="text" name="mTo"  value="<?php echo $conf['mto']?>">
             </div>
             <button class="button">Изменить</button>
         </div>
@@ -199,7 +203,7 @@
             <div class="musicform">
                 <div><label>Дневное приветствие</label>
                     <select name="day">
-                        <option></option>
+                        <option><?php echo $conf['day']?></option>
                         <?php
                         foreach ($fileList as $val) {
                             echo "<option>" . $val . "</option>";
@@ -210,7 +214,12 @@
 
                 <div><label>Ночное приветствие</label>
                     <select name="day">
-                        <option></option>
+                        <option><?php echo $conf['night']?></option>
+                        <?php
+                        foreach ($fileList as $val) {
+                            echo "<option>" . $val . "</option>";
+                        }
+                        ?>
                     </select>
                 </div>
                 <button class="button">Изменить</button>
