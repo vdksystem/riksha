@@ -3,6 +3,8 @@
 
 
 use yii\widgets\ActiveForm;
+use yii\helpers\Html;
+
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
@@ -21,13 +23,13 @@ $this->title = 'My Yii Application';
                         ],
                     ]); ?>
 
-                    <?= $form->field($model, 'dateFrom') ?>
+                    <?= $form->field($model, 'timeFrom')->textInput($options = ['value' => '08:00']) ?>
 
-                    <?= $form->field($model, 'dateTo') ?>
+                    <?= $form->field($model, 'timeTo')->textInput($options = ['value' => '23:00']) ?>
 
                     <div class="form-group">
                         <div class="col-lg-offset-1 col-lg-11">
-                            <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                            <?= Html::submitButton('Изменить', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                         </div>
                     </div>
 

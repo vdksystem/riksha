@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\WorkTime;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -52,7 +53,11 @@ class SiteController extends Controller
         if (\Yii::$app->user->isGuest) {
             return $this->actionLogin();
         }
-        return $this->render('index');
+        $model = new WorkTime();
+
+        return $this->render('index', [
+            'model' => $model,
+        ]);
     }
 
     public function actionLogin()
@@ -62,6 +67,7 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
+        $model->timeFrom = '08:00';
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
