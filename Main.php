@@ -10,7 +10,8 @@ class Main {
 
     public static function getConf()
     {
-        $string = file_get_contents("data/conf");
+        $path = realpath(__DIR__);
+        $string = file_get_contents($path . "/data/conf");
         $array = [];
         $a = explode(',', $string);
 
