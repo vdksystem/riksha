@@ -26,11 +26,12 @@ class Main {
 
     public static function setConf($array)
     {
+        $path = realpath(__DIR__);
         $str = "";
         foreach ($array as $k => $v) {
             $str = $str . $k . "->" . $v . ',';
         }
-        file_put_contents("data/conf", $str);
+        file_put_contents($path . "/data/conf", $str);
     }
 
     public static function setTime($post)
@@ -72,6 +73,31 @@ class Main {
         } else {
             echo "Possible file upload attack!\n";
         }
+    }
+
+    public static function setDefault()
+    {
+        $path = realpath(__DIR__);
+        $string = file_get_contents($path . "/data/default");
+        $array = array();
+        $a = explode(',', $string);
+
+        foreach ($a as $result) {
+            if ($result != "") {
+                $b = explode('->', $result);
+                $array[$b[0]] = $b[1];
+            }
+        }
+        $currentConf = self::getConf();
+
+        foreach ($array as $k => $v) {
+            if ($v) {
+                if (array_key_exists($k, $currentConf)) {
+                    $currentConf[$k] = $v;
+                }
+            }
+        }
+        self::setConf($currentConf);
     }
 
 }
