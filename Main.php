@@ -15,8 +15,10 @@ class Main {
         $a = explode(',', $string);
 
         foreach ($a as $result) {
-            $b = explode('->', $result);
-            $array[$b[0]] = $b[1];
+            if ($result != "") {
+                $b = explode('->', $result);
+                $array[$b[0]] = $b[1];
+            }
         }
         return $array;
     }
@@ -32,12 +34,43 @@ class Main {
 
     public static function setTime($post)
     {
-        var_dump($post);
+        $conf = self::getConf();
+        foreach ($post as $k => $v) {
+            if ($v) {
+                if (array_key_exists($k, $conf)) {
+                    $conf[$k] = $v;
+                }
+            }
+        }
+
+        self::setConf($conf);
     }
 
     public static function setMusic($post)
     {
-        var_dump($post);
+        $conf = self::getConf();
+        foreach ($post as $k => $v) {
+            if ($v) {
+                if (array_key_exists($k, $conf)) {
+                    $conf[$k] = $v;
+                }
+            }
+        }
+
+        self::setConf($conf);
+    }
+
+    public static function Upload($post)
+    {
+
+        $uploaddir = 'files/';
+        $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
+
+        if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
+            return;
+        } else {
+            echo "Possible file upload attack!\n";
+        }
     }
 
 }

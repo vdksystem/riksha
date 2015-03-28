@@ -134,10 +134,10 @@
 <div class="files">
     <h2 class="demoHeaders">Список мелодий</h2>
     <div class="form">
-        <form name="addFile" method="post">
-        <input type="file">
-        <input type="hidden" name="action" value="add">
-        <button type="submit" id="addfile">Добавить</button>
+        <form method="post" enctype=multipart/form-data>
+        <input type="file" name="userfile">
+        <input type="hidden" name="action" value="upload">
+        <button type="submit" class="button">Добавить</button>
     </form></div>
 
     <?php
@@ -153,6 +153,9 @@
                 break;
             case "music" :
                 Main::setMusic($post);
+                break;
+            case "upload" :
+                Main::Upload($post);
                 break;
         }
         sleep(2);
@@ -186,11 +189,11 @@
         <input type="hidden" name="action" value="settime">
         <div class="timeform">
             <div><label>Начало работы</label>
-            <input type="text" name="hFrom" value="<?php echo $conf['hfrom']?>">:<input type="text" name="mFrom" value="<?php echo $conf['mfrom']?>">
+            <input type="text" name="hfrom" value="<?php echo $conf['hfrom']?>">:<input type="text" name="mfrom" value="<?php echo $conf['mfrom']?>">
             </div>
 
             <div><label>Окончание работы</label>
-                <input type="text" name="hTo" value="<?php echo $conf['hto']?>">:<input type="text" name="mTo"  value="<?php echo $conf['mto']?>">
+                <input type="text" name="hto" value="<?php echo $conf['hto']?>">:<input type="text" name="mto"  value="<?php echo $conf['mto']?>">
             </div>
             <button class="button">Изменить</button>
         </div>
@@ -213,7 +216,7 @@
                 </div>
 
                 <div><label>Ночное приветствие</label>
-                    <select name="day">
+                    <select name="night">
                         <option><?php echo $conf['night']?></option>
                         <?php
                         foreach ($fileList as $val) {
