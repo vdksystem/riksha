@@ -1,0 +1,5 @@
+AuthType Basic
+        AuthName "Please enter login and password"
+        AuthUserFile "/etc/apache2/site-password/riksha"
+        Require Valid-user
+

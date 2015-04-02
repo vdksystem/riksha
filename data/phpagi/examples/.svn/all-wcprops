@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/p/phpagi/svn/!svn/ver/4/trunk/examples
+END
+beep.gsm
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/p/phpagi/svn/!svn/ver/2/trunk/examples/beep.gsm
+END
+dtmf.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/p/phpagi/svn/!svn/ver/2/trunk/examples/dtmf.php
+END
+ping.gsm
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/p/phpagi/svn/!svn/ver/2/trunk/examples/ping.gsm
+END
+my_ip.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/p/phpagi/svn/!svn/ver/2/trunk/examples/my_ip.php
+END
+ping.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/p/phpagi/svn/!svn/ver/2/trunk/examples/ping.php
+END
+input.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/p/phpagi/svn/!svn/ver/2/trunk/examples/input.php
+END
+ring.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/p/phpagi/svn/!svn/ver/2/trunk/examples/ring.php
+END
+weather.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/p/phpagi/svn/!svn/ver/2/trunk/examples/weather.php
+END
+sip_show_peer.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/p/phpagi/svn/!svn/ver/2/trunk/examples/sip_show_peer.php
+END
+weather.txt.gz
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/p/phpagi/svn/!svn/ver/2/trunk/examples/weather.txt.gz
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/p/phpagi/svn/!svn/ver/2/trunk/examples/README
+END
+thanks.gsm
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/p/phpagi/svn/!svn/ver/2/trunk/examples/thanks.gsm
+END

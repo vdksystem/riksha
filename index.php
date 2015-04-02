@@ -162,9 +162,9 @@
         header('Location: index.php');
     }
 
-    $path = "files";
+    $path = "cust";
     $list = scandir($path);
-    $fileList = [];
+    $fileList = array();
     foreach ($list as $val) {
         if (($val!=".") && ($val !="..")){
             $fileList[] = $val;
@@ -230,3 +230,4 @@
         </form>
     </div>
 </div>
+

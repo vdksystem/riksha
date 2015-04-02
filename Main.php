@@ -12,7 +12,9 @@ class Main {
     {
         $path = realpath(__DIR__);
         $string = file_get_contents($path . "/data/conf");
-        $array = [];
+	
+  // 	$string = file_get_contents("data/conf");
+	$array = array();
         $a = explode(',', $string);
 
         foreach ($a as $result) {
@@ -65,11 +67,15 @@ class Main {
     public static function Upload($post)
     {
 
-        $uploaddir = 'files/';
+        $uploaddir = 'cust/';
         $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
 
         if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
-            return;
+	    $path_parts = pathinfo($uploadfile);
+            $command = "lame --decode " .  $uploadfile . " - | sox -v 0.5 -t wav - -t wav -2 -r 8000 -c 1 " . $uploaddir . $path_parts['filename'] . ".wav";
+	    shell_exec($command);
+	    shell_exec("rm " . $uploadfile);
+	    return;
         } else {
             echo "Possible file upload attack!\n";
         }
