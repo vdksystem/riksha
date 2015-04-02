@@ -62,7 +62,6 @@
             width: 40%;
             border-radius: 7px;
             border: solid 1px orange;
-            height: 500px;
             float: left;
             margin:0 5% 0 5%;
             padding: 4px;;
@@ -125,6 +124,9 @@
             width: 100px;
             text-align: center;
         }
+        .fright {
+            margin: 20px 20px 20px 45px;
+        }
 
     </style>
 </head>
@@ -157,6 +159,9 @@
             case "upload" :
                 Main::Upload($post);
                 break;
+    	    case "delete" :
+        	Main::Delete($post);
+        	break;
         }
         sleep(2);
         header('Location: index.php');
@@ -180,8 +185,22 @@
         <source src="<?php echo $path . "/" . $val?>" type="audio/wav">
         Your browser does not support the audio element.
     </audio>
-            </div></div>
+            </div>
+</div>
         <?php }?>
+<div class="form fright">
+        <form method="post">
+            <input type="hidden" name="action" value="delete">
+            <select name="filename">
+                <option></option>
+                <?php
+                foreach ($fileList as $val) {
+                    echo "<option>" . $val . "</option>";
+                }
+                ?>
+            </select>
+            <button type="submit" class="button">Удалить</button>
+        </form></div>
 </div>
 <div class="calendar">
     <h2 class="demoHeaders">Время работы</h2>

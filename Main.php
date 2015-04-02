@@ -106,4 +106,12 @@ class Main {
         self::setConf($currentConf);
     }
 
+    public static function Delete($post)
+    {
+        if ($post) {
+            $command = "rm cust/" . $post['filename'];
+            shell_exec($command);
+        }
+    }
+
 }
